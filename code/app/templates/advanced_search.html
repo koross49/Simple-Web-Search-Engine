@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form, render_hidden_errors, render_form_row %}
+{% from 'bootstrap5/utils.html' import render_messages %}
+
+{% block page_content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>高级搜索</h2>
+                <hr/>
+            </div>
+        </div>
+        <form method="POST">
+            {{ render_messages() }}
+            {{ render_hidden_errors(form) }}
+            {{ form.csrf_token }}
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.all_these_words], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.this_exact_word_or_phrase], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.any_of_these_words], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.none_of_these_words], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.site_or_domain],form_type ="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.time_limit], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.is_title_only], form_type="horizontal") }}</div>
+            </div>
+            <div class="row">
+                <div class="col-8">{{ render_form_row([form.submit]) }}</div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

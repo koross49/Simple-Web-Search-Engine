@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <form action="{{ url_for('front._result_page') }}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keywords" placeholder="请输入关键词" style="border-radius: 24px 0 0 24px;">
+                        <div class="input-group-append">
+                            <button id="search-button" class="btn btn-outline-secondary" type="submit">立即搜索</button>
+                            <button class="btn btn-outline-secondary" onClick="window.location.href='{{ url_for('front._advanced_search') }}'" type="button">高级搜索</button>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                {% if search_history %}
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h6 class="text-left">搜索历史</h6>
+                            <div class="row">
+                                {% for i in search_history %}
+                                    <div class="col-md-6 mb-3">
+                                        <a href="{{ url_for('front._result_page', keywords=i) }}" class="btn btn-outline-secondary btn-block" style="border-radius: 24px;">{{ i }}</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
